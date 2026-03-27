@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart & Checkout - Sikarwar Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>Buy 2 <strong>Get 10% OFF</strong></span>
+        <span class="dot">✦</span>
+        <span>Free Shipping &amp; COD Available</span>
+        <span class="dot">✦</span>
+        <span>Buy 2 <strong>Get 10% OFF</strong></span>
+        <span class="dot">✦</span>
+        <span>Free Shipping &amp; COD Available</span>
+        <span class="dot">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+      <a href="index.html" class="logo">Sikarwar <span>Group</span></a>
+      <div class="header-icons">
+        <a href="#" class="icon-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="cart.html" class="icon-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count">2</span>
+        </a>
+      </div>
+    </div>
+    <div class="menu-drawer" id="menuDrawer">
+      <div class="drawer-header">
+        <button class="drawer-close" id="drawerClose">✕</button>
+        <div class="drawer-search"><input type="text" placeholder="Search products..."></div>
+      </div>
+      <nav class="drawer-nav">
+        <ul>
+          <li><a href="#">Trending</a></li><li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Shirts</a></li><li><a href="#">Trousers</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+  </header>
+
+  <!-- PAGE TABS -->
+  <div class="cart-tabs">
+    <button class="cart-tab active" id="tabCart" onclick="showTab('cart')">🛒 Cart (2)</button>
+    <button class="cart-tab" id="tabCheckout" onclick="showTab('checkout')">📦 Checkout</button>
+  </div>
+
+  <!-- CART VIEW -->
+  <div id="cartView">
+    <section class="cart-section">
+
+      <!-- CART ITEMS -->
+      <div class="cart-items">
+
+        <div class="cart-item" id="item1">
+          <div class="cart-item-img">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=200&q=80&fit=crop" alt="Navy Linen Slim Shirt" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+          </div>
+          <div class="cart-item-details">
+            <p class="cart-item-name">Navy Linen Slim Shirt</p>
+            <p class="cart-item-meta">Color: Navy Blue &nbsp;|&nbsp; Size: M</p>
+            <div class="cart-item-price">
+              <span class="cart-price-sale">₹849</span>
+              <span class="cart-price-orig">₹1,699</span>
+            </div>
+            <div class="cart-qty-row">
+              <div class="qty-control">
+                <button onclick="changeQty('item1', -1)">−</button>
+                <span id="item1-qty">1</span>
+                <button onclick="changeQty('item1', 1)">+</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem('item1')">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-item" id="item2">
+          <div class="cart-item-img">
+            <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=200&q=80&fit=crop" alt="Olive Cargo Trousers" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+          </div>
+          <div class="cart-item-details">
+            <p class="cart-item-name">Olive Cargo Trousers</p>
+            <p class="cart-item-meta">Color: Olive &nbsp;|&nbsp; Size: L</p>
+            <div class="cart-item-price">
+              <span class="cart-price-sale">₹999</span>
+              <span class="cart-price-orig">₹1,999</span>
+            </div>
+            <div class="cart-qty-row">
+              <div class="qty-control">
+                <button onclick="changeQty('item2', -1)">−</button>
+                <span id="item2-qty">1</span>
+                <button onclick="changeQty('item2', 1)">+</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem('item2')">Remove</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- COUPON -->
+      <div class="coupon-box">
+        <h4>Apply Coupon</h4>
+        <div class="coupon-row">
+          <input type="text" id="couponInput" placeholder="Enter coupon code">
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <p id="couponMsg" class="coupon-msg"></p>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <h4>Order Summary</h4>
+        <div class="summary-row"><span>MRP Total</span><span id="mrpTotal">₹3,698</span></div>
+        <div class="summary-row discount-row"><span>Discount (50% OFF)</span><span id="discountAmt">− ₹1,850</span></div>
+        <div class="summary-row"><span>Delivery Charges</span><span class="free-tag">FREE</span></div>
+        <div class="summary-row coupon-row-display" id="couponRow" style="display:none;"><span>Coupon Discount</span><span id="couponDiscount" class="discount-row">− ₹0</span></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row"><span>Total Amount</span><span id="totalAmt">₹1,848</span></div>
+        <p class="savings-line" id="savingsLine">🎉 You are saving ₹1,850 on this order!</p>
+      </div>
+
+      <button class="btn-checkout" onclick="showTab('checkout')">Proceed to Checkout →</button>
+      <a href="index.html" class="continue-shopping">← Continue Shopping</a>
+
+    </section>
+  </div>
+
+  <!-- CHECKOUT VIEW -->
+  <div id="checkoutView" style="display:none;">
+    <section class="checkout-section">
+
+      <!-- PROGRESS -->
+      <div class="checkout-progress">
+        <div class="step done">
+          <div class="step-circle">✓</div>
+          <span>Cart</span>
+        </div>
+        <div class="step-line done"></div>
+        <div class="step active">
+          <div class="step-circle">2</div>
+          <span>Details</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <span>Payment</span>
+        </div>
+      </div>
+
+      <div class="checkout-body">
+        <!-- FORM -->
+        <div class="checkout-form">
+          <h3>Delivery Details</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" placeholder="Rahul" id="firstName">
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" placeholder="Sharma" id="lastName">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="rahul@email.com" id="email">
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" placeholder="+91 9876543210" id="phone">
+          </div>
+
+          <div class="form-group">
+            <label>Address *</label>
+            <input type="text" placeholder="Flat / House No, Street Name" id="address">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>City *</label>
+              <input type="text" placeholder="Mumbai" id="city">
+            </div>
+            <div class="form-group">
+              <label>PIN Code *</label>
+              <input type="text" placeholder="400001" id="pincode">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>State *</label>
+            <select id="state">
+              <option value="">Select State</option>
+              <option>Maharashtra</option>
+              <option>Delhi</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+              <option>Gujarat</option>
+              <option>Rajasthan</option>
+              <option>West Bengal</option>
+            </select>
+          </div>
+
+          <h3 style="margin-top:2rem;">Payment Method</h3>
+          <div class="payment-options">
+            <label class="payment-option active" id="payOnline">
+              <input type="radio" name="payment" value="online" checked onchange="selectPayment('online')">
+              <div class="pay-icon">💳</div>
+              <div>
+                <strong>Online Payment</strong>
+                <p>UPI, Cards, Net Banking</p>
+              </div>
+            </label>
+            <label class="payment-option" id="payCOD">
+              <input type="radio" name="payment" value="cod" onchange="selectPayment('cod')">
+              <div class="pay-icon">💵</div>
+              <div>
+                <strong>Cash on Delivery</strong>
+                <p>Pay when delivered</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- UPI Section -->
+          <div class="upi-section" id="upiSection">
+            <div class="form-group">
+              <label>UPI ID</label>
+              <input type="text" placeholder="yourname@upi">
+            </div>
+            <div class="upi-apps">
+              <button class="upi-app-btn">📱 PhonePe</button>
+              <button class="upi-app-btn">💚 Google Pay</button>
+              <button class="upi-app-btn">🔵 Paytm</button>
+            </div>
+          </div>
+
+          <button class="btn-place-order" onclick="placeOrder()">Place Order →</button>
+        </div>
+
+        <!-- ORDER MINI SUMMARY -->
+        <div class="mini-summary">
+          <h4>Order Summary</h4>
+          <div class="mini-item">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=100&q=80&fit=crop" alt="Navy Shirt" style="width:50px;height:64px;object-fit:cover;border-radius:8px;flex:0 0 50px;">
+            <div>
+              <p>Navy Linen Slim Shirt</p>
+              <small>M | Navy Blue | Qty: 1</small>
+              <strong>₹849</strong>
+            </div>
+          </div>
+          <div class="mini-item">
+            <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=100&q=80&fit=crop" alt="Olive Trousers" style="width:50px;height:64px;object-fit:cover;border-radius:8px;flex:0 0 50px;">
+            <div>
+              <p>Olive Cargo Trousers</p>
+              <small>L | Olive | Qty: 1</small>
+              <strong>₹999</strong>
+            </div>
+          </div>
+          <div class="mini-divider"></div>
+          <div class="mini-row"><span>Subtotal</span><span>₹1,848</span></div>
+          <div class="mini-row"><span>Delivery</span><span class="free-tag">FREE</span></div>
+          <div class="mini-row mini-total"><span>Total</span><span>₹1,848</span></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div class="success-modal" id="successModal" style="display:none;">
+    <div class="success-inner">
+      <div class="success-icon">✅</div>
+      <h2>Order Placed!</h2>
+      <p>Thank you! Your order #SH2025-8472 has been placed successfully.</p>
+      <p class="delivery-est">Estimated delivery: <strong>3-5 working days</strong></p>
+      <a href="index.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Continue Shopping</a>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modalOverlay" style="display:none;"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">Sikarwar <span>Group</span></p>
+        <p>India's most trusted men's fashion brand.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Help</h5>
+        <ul><li><a href="#">Track Order</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact Us</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Sikarwar Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
